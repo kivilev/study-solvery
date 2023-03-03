@@ -2,8 +2,7 @@ package org.kivilev;
 
 public class Demo {
     private final int minLimitMilliSec;
-    private long lastExecuteTime = 0;
-
+    private long lastExecuteTime;
 
     public Demo(int minLimitSec) {
         this.minLimitMilliSec = minLimitSec * 1000;
@@ -11,7 +10,8 @@ public class Demo {
 
     public void limitMethod() {
         synchronized (this) {
-            final long currentTime = System.currentTimeMillis(); // nanoTime вроде более лучше
+            // nanoTime вроде более лучше
+            final long currentTime = System.currentTimeMillis();
             if (currentTime >= lastExecuteTime + minLimitMilliSec) {
 
                 System.out.println("Очень полезное действие");
